@@ -71,7 +71,7 @@ public class MainController {
     private void validateFileExists(String fileName) {
         final var filePath = Paths.get(directory, fileName);
         try {
-            final var content = Files.readString(filePath);
+            Files.readString(filePath);
 
         } catch (IOException e) {
             throw new BadRequestException(new ErrorOutput(fileName, FILE_NOT_FOUND));
