@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 maven:3.9.7-eclipse-temurin-17-alpine as maven-builder
+FROM --platform=linux/amd64 maven:3.9.7-eclipse-temurin-17-alpine as maven-builder
 COPY src /app/src
 COPY pom.xml /app
 

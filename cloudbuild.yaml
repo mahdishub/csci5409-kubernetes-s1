@@ -1,0 +1,22 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1',
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1']
+
+  # Entrypoint, timeout and environment variables
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    timeout: 500s
+    args: ['compute', 'instances',
+           'create-with-container', 'service1-vm',
+           '--container-image',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1']
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
