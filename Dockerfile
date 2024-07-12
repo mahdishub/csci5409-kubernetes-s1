@@ -4,7 +4,7 @@ COPY pom.xml /app
 
 RUN mvn -f /app/pom.xml clean package -DskipTests
 
-FROM --platform=linux/x86_64 openjdk:17-alpine
+FROM --platform=linux/amd64 openjdk:17-alpine
 ARG JAR_NAME
 COPY --from=maven-builder /app/target/$JAR_NAME /app/service1.jar
 WORKDIR /app
