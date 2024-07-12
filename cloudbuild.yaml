@@ -14,7 +14,7 @@ steps:
   - name: 'gcr.io/cloud-builders/kubectl'
     args: [ 'apply', '-f', './k8s' ]
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=csci5409-cluster'
       - 'IMAGE_TAG=$COMMIT_SHA'
 
