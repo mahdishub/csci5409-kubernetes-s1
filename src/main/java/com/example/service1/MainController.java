@@ -69,6 +69,7 @@ public class MainController {
             return ResponseEntity.ok(new FileStoreOutput(input.getFile(), "Success."));
 
         } catch (IOException e) {
+            log.info(e.getMessage());
             throw new ServerErrorException(
                     new ErrorOutput(input.getFile(), "Error while storing the file to the storage."));
         }
@@ -108,6 +109,7 @@ public class MainController {
         } catch (HttpClientErrorException e) {
             throw new BadRequestException(e.getResponseBodyAs(ErrorOutput.class));
         } catch (Exception e) {
+            log.info(e.getMessage());
             throw new RuntimeException("Some error occurred in service2");
         }
     }

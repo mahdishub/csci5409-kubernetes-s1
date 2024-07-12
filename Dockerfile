@@ -9,5 +9,5 @@ ARG JAR_NAME
 COPY --from=maven-builder /app/target/$JAR_NAME /app/service1.jar
 WORKDIR /app
 EXPOSE 8080
-RUN mkdir "/app/data"
+RUN mkdir "/mahdi_PV_dir"
 CMD ["java", "-jar", "service1.jar"]
