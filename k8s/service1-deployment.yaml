@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-1-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: service1
+  template:
+    metadata:
+      labels:
+        component: service1
+    spec:
+      containers:
+        - name: service1-container
+          image: us-central1-docker.pkg.dev/csci5409-429122/csci5409/service1:${IMAGE_TAG}
+          env:
+            - name: SERVICE2_URL
+              value: http://service2-service:8081/processFile
+            - name: DATA_DIRECTORY
+              value: /mahdi_PV_dir
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /mahdi_PV_dir
+              name: file-storage
+      volumes:
+        - name: file-storage
+          persistentVolumeClaim:
+            claimName: service1-pvc
