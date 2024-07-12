@@ -3,7 +3,7 @@ steps:
     args: ['build', '-t',
            'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1:$COMMIT_SHA',
            '--build-arg',
-           'JAR_NAME=service1-0.0.1-SNAPSHOT',
+           'JAR_NAME=service1-0.0.1-SNAPSHOT.jar',
            '.']
 
   # Docker Push
