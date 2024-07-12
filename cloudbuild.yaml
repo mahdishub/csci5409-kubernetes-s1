@@ -1,13 +1,13 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
-           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1:$COMMIT_SHA',
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',
-           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1']
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1:$COMMIT_SHA']
 
 options:
   logging: CLOUD_LOGGING_ONLY
