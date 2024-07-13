@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: service1-container
-          image: us-central1-docker.pkg.dev/csci5409-429122/csci5409/service1:${IMAGE_TAG}
+          image: us-central1-docker.pkg.dev/csci5409-429122/csci5409/service1:IMAGE_TAG
           env:
             - name: SERVICE2_URL
               value: http://service2-service:8081/processFile

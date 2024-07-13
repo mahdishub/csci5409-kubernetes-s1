@@ -11,12 +11,14 @@ steps:
     args: ['push',
            'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1:$COMMIT_SHA']
 
+  - name: 'bash'
+    script: |
+      sed -i "s/IMAGE_TAG/$COMMIT_SHA/g" k8s/service1-deployment.yaml
   - name: 'gcr.io/cloud-builders/kubectl'
     args: [ 'apply', '-f', './k8s' ]
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=csci5409-cluster'
-      - 'IMAGE_TAG=$COMMIT_SHA'
 
 
 options:
