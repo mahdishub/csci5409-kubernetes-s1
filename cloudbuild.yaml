@@ -13,7 +13,9 @@ steps:
 
   - name: 'bash'
     script: |
+      echo $COMMIT_SHA
       sed -i "s/IMAGE_TAG/$COMMIT_SHA/g" k8s/service1-deployment.yaml
+
   - name: 'gcr.io/cloud-builders/kubectl'
     args: [ 'apply', '-f', './k8s' ]
     env:
