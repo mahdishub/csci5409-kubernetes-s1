@@ -53,7 +53,7 @@ public class MainController {
 
     @PostMapping("/calculate")
     public ResponseEntity<Output> calculate(@RequestBody Input input) {
-        log.info("In calculate api..");
+        log.info("In calculate api....");
         validateInput(input);
 
         return ResponseEntity.ok(getOutputFromService2(input));
