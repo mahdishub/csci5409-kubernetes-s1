@@ -11,10 +11,13 @@ steps:
     args: ['push',
            'us-central1-docker.pkg.dev/${PROJECT_ID}/csci5409/service1:$COMMIT_SHA']
 
-  - name: 'bash'
-    script: |
-      echo $COMMIT_SHA
-      sed -i "s/IMAGE_TAG/$COMMIT_SHA/g" k8s/service1-deployment.yaml
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - 'c'
+      - |
+        echo $COMMIT_SHA
+        sed -i "s/IMAGE_TAG/$COMMIT_SHA/g" k8s/service1-deployment.yaml
 
   - name: 'gcr.io/cloud-builders/kubectl'
     args: [ 'apply', '-f', './k8s' ]
